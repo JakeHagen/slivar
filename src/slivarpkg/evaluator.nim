@@ -423,7 +423,7 @@ proc set_format_field(ctx: Evaluator, f:FormatField, fmt:FORMAT, ints: var seq[i
     for sample in ctx.samples.mitems:
       sample.fill(f.name, floats, f.n_per_sample)
   elif f.vtype == BCF_TYPE.CHAR:
-    stderr.write_line "[slivar]" & f.name.
+    stderr.write_line "[slivar]" & f.name
     if fmt.get(f.name, strings) != Status.Ok:
       quit "couldn't get format field:" & f.name
     for sample in ctx.samples.mitems:
