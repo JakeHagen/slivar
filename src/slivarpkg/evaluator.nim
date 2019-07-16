@@ -423,9 +423,11 @@ proc set_format_field(ctx: Evaluator, f:FormatField, fmt:FORMAT, ints: var seq[i
     for sample in ctx.samples.mitems:
       sample.fill(f.name, floats, f.n_per_sample)
   elif f.vtype == BCF_TYPE.CHAR:
+    stderr.write_line "[slivar]" & f.name.
     if fmt.get(f.name, strings) != Status.Ok:
       quit "couldn't get format field:" & f.name
     for sample in ctx.samples.mitems:
+      stderr.write_line "[slivar]" & f.anme
       sample.fill(f.name, strings, f.n_per_sample)
   elif f.vtype in {BCF_TYPE.INT32, BCF_TYPE.INT16, BCF_TYPE.INT8}:
     if fmt.get(f.name, ints) != Status.OK:
@@ -649,7 +651,7 @@ proc set_format_fields*(ev:var Evaluator, v:Variant, alts: var seq[int8], ints: 
   for f in fmt.fields:
     if ev.format_white_list.len > 0 and f.name notin ev.format_white_list:
       continue
-    ev.fmt_field_sets.curr.incl(f.i.uint8)
+    ev.fmt_field_sets.curr
     if f.name == "GT": continue
     ev.set_format_field(f, fmt, ints, floats, strings)
     if f.name == "AD":
